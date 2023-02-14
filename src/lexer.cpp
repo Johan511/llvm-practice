@@ -79,6 +79,15 @@ Token Lexer::get_tok()
         return tok_num;
     }
 
+    if(lastChar == Lexer_Checks::ONELINE_COMMENT){
+        do{
+            lastChar = file->get();
+        } while(lastChar != EOF && lastChar != '\n' && lastChar != '\r');
+
+        if(lastChar != EOF)
+            return get_tok();
+    }
+
     if (lastChar == EOF)
         return tok_eof;
 

@@ -27,6 +27,7 @@ typedef int Token;
 
 class Lexer_Checks
 {
+    static const char ONELINE_COMMENT = '#';
     static const std::vector<std::string> commands;
 
     friend class Lexer;
