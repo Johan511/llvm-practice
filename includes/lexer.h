@@ -42,6 +42,8 @@ class Lexer_Checks
 
 class Lexer
 {
+    friend class Parser;
+
     std::ifstream *file;
 
     double NumVal = 0;

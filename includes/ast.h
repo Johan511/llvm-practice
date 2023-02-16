@@ -24,7 +24,7 @@ public:
     VarExprAST(std::string &varName) : varName(varName){};
 };
 
-class BinExprAST : ExprAST
+class BinExprAST : public ExprAST
 {
     char op;
     std::unique_ptr<ExprAST> LHS, RHS;
@@ -56,10 +56,10 @@ public:
 
 class FunctionAST
 {
+public:
     std::unique_ptr<PrototypeAST> prototype;
     std::unique_ptr<ExprAST> funcBody;
 
-public:
     FunctionAST(std::unique_ptr<PrototypeAST> prototype,
                 std::unique_ptr<ExprAST> funcBody) : prototype(std::move(prototype)), funcBody(std::move(funcBody)){};
 };

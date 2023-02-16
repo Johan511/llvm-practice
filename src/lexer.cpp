@@ -69,22 +69,25 @@ Token Lexer::get_tok()
 
     if (Lexer_Checks::is_num(lastChar) == true)
     {
+        int decCount = 0;
         do
         {
             IdentifierString += lastChar;
             lastChar = file->get();
-        } while (Lexer_Checks::is_num(lastChar) == true);
+        } while (Lexer_Checks::is_num(lastChar) == true || lastChar == '.');
 
         NumVal = strtod(IdentifierString.c_str(), 0);
         return tok_num;
     }
 
-    if(lastChar == Lexer_Checks::ONELINE_COMMENT){
-        do{
+    if (lastChar == Lexer_Checks::ONELINE_COMMENT)
+    {
+        do
+        {
             lastChar = file->get();
-        } while(lastChar != EOF && lastChar != '\n' && lastChar != '\r');
+        } while (lastChar != EOF && lastChar != '\n' && lastChar != '\r');
 
-        if(lastChar != EOF)
+        if (lastChar != EOF)
             return get_tok();
     }
 
